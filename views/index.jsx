@@ -28,19 +28,63 @@ class TodoList extends React.Component {
     }
 }
 
-class Todo extends React.Component {
-    render() {
-        return (
-            <tr>
-                <td style={{border: "1px solid black"}}>{this.props.title}</td>
-                <td style={{border: "1px solid black"}}>{this.props.children}</td>
-            </tr>
-        );
-    }
-}
-Todo.propTypes = {
+
+// Write code to set the initial value of checked and define handleChange.
+// Within handleChange, you should update the component's state by using this.setState.
+
+// class Todo extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     },
+
+//   getInitialState: function () {
+//     return {checked: false};
+//   },
+
+//   handleChange: function () {
+//     this.setState({checked: !this.state.checked});
+//   },
+
+//     render() {
+//         return (
+//             <tr>
+//                 <td style={{border: "1px solid black"}}>
+//                     <input type="checkbox" checked={this.state.checked} onChange={this.handleChange.bind(this)}/>
+//                 </td>
+//                 <td style={{border: "1px solid black"}}>{this.props.title}</td>
+//                 <td style={{border: "1px solid black"}}>{this.props.children}</td>
+//             </tr>
+//         );
+//     }
+// };
+
+// Todo.propTypes = {
+//     title: React.PropTypes.string.isRequired
+// };
+
+// The code below was copied from another's solution - I still have not understood why the below code works, and the above does not ...
+
+var Todo = React.createClass({
+  getInitialState: function () {
+    return {checked: false};
+  },
+  propTypes: {
     title: React.PropTypes.string.isRequired
-};
+  },
+  handleChange: function () {
+    this.setState({checked: !this.state.checked});
+  },
+  render: function() {
+    return (
+      <tr>
+        <td style={{border: "1px solid black"}}><input type="checkbox"
+          checked={this.state.checked} onChange={this.handleChange} /></td>
+        <td style={{border: "1px solid black"}}>{this.props.title}</td>
+        <td style={{border: "1px solid black"}}>{this.props.children}</td>
+      </tr>
+    );
+  }
+});
 
 class TodoForm extends React.Component {
     render() {
