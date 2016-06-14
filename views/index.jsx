@@ -3,48 +3,43 @@ import React from 'react';
 export default class TodoBox extends React.Component {
     render() {
         return (
-            <div className="todoBox">
-                <h1>Todos</h1>
-                <TodoList />
-                <TodoForm />
-            </div>
+          <div className="todoBox">
+            <h1>Todos</h1>
+            <TodoList data = {this.props.data} />
+            <TodoForm />
+          </div>
         );
     }
 }
 
 class TodoList extends React.Component {
     render() {
+        var todo = this.props.data.map(function(obj) { return <Todo title={obj.title} key={obj.title}>{obj.detail}</Todo>});
         return (
-            <div className="todoList">
-                <table style={{border: "2px solid black"}}>
-                  <tbody>
-                    <Todo title="Shopping">Milk</Todo>
-                    <Todo title="Hair cut">13:00</Todo>
-                    <Todo title="Learn React">15:00</Todo>
-                  </tbody>
-                </table>
-            </div>
+          <div className = "todoList">
+            <table style={{border: "2px solid black"}}>
+              <tbody>
+                {todo}
+              </tbody>
+            </table>
+          </div>
         );
     }
 }
 
-
-// Write code to set the initial value of checked and define handleChange.
-// Within handleChange, you should update the component's state by using this.setState.
-
 var Todo = React.createClass({
 
-  propTypes: {
-    title: React.PropTypes.string.isRequired
-  },
+    propTypes: {
+        title: React.PropTypes.string.isRequired
+    },
 
-  getInitialState() {
-    return {checked: false};
-  },
+    getInitialState() {
+        return {checked: false};
+    },
 
-  handleChange() {
-    this.setState({checked: !this.state.checked});
-  },
+    handleChange() {
+        this.setState({checked: !this.state.checked});
+    },
 
     render() {
         return (
@@ -67,7 +62,7 @@ class TodoForm extends React.Component {
             </div>
         );
     }
-}
+};
 
 let style = {
     tableContent: {
@@ -75,5 +70,3 @@ let style = {
     }
 };
 
-// Now change the code to use the style variable you added.
-// NOTE Some code is a little different from this style - be careful!
