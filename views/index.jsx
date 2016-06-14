@@ -49,11 +49,11 @@ var Todo = React.createClass({
     render() {
         return (
             <tr>
-                <td style={{border: "1px solid black"}}>
+                <td style={style.tableContent}>
                     <input type="checkbox" checked={this.state.checked} onChange={this.handleChange}/>
                 </td>
-                <td style={{border: "1px solid black"}}>{this.props.title}</td>
-                <td style={{border: "1px solid black"}}>{this.props.children}</td>
+                <td style={style.tableContent}>{this.props.title}</td>
+                <td style={style.tableContent}>{this.props.children}</td>
             </tr>
         );
     }
@@ -69,3 +69,11 @@ class TodoForm extends React.Component {
     }
 }
 
+let style = {
+    tableContent: {
+        border: "1px solid black"
+    }
+};
+
+// Now change the code to use the style variable you added.
+// NOTE Some code is a little different from this style - be careful!
